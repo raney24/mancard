@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, :path_names => { :sign_up => "register", :sign_in => "sign-in", :sign_out => "sign-out" }
   mount Ckeditor::Engine => '/ckeditor'
   resources :posts
 
