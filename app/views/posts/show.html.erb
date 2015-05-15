@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+	<div class="page-header">
+		<h1><%= @post.title %></h1>
+	</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @post.description.html_safe %>
-</p>
+	<div class="content">
+		<%= @post.body.html_safe %>
+	</div>
 
-<p>
-  <strong>Picture:</strong>
-  <%= @post.picture %>
-</p>
+	<div class="buttons">
+		<% if can? :update, @post %>
+			<%= link_to 'Edit', edit_post_path(@post), :class => "btn btn-primary" %>
+		<% end %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+		<% if can? :destroy, @post %>
+			<%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+		<% end %>
+
+		<%= link_to 'Back', posts_path, :class => "btn btn-default" %>
+	</div>
+	
+</div>
